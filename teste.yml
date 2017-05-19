@@ -1,0 +1,17 @@
+- name: teste
+  hosts: nodes
+  remote_user: bravo
+
+  tasks:
+  - name: add tmpdir
+    file:
+        path: /tmp/tmpdir
+        state: directory
+    notify: restart crond
+
+  handlers:
+  - name: restart crond
+    service:
+        name: crond
+        state: restarted
+

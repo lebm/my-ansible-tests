@@ -1,0 +1,21 @@
+- name: para e remove nginx
+  hosts: nodes
+  remote_user: bravo
+
+  tasks:
+  - name: stop nginx
+    service:
+        name: nginx
+        state: stopped
+    notify: remove nginx
+
+  - name: remove cache dir
+    file:
+        path: /opt/cache
+        state: absent
+
+  handlers:
+  - name: remove nginx
+    yum:
+        name: nginx
+        state: removed
