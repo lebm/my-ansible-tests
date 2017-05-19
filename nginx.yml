@@ -1,4 +1,9 @@
-tasks:
+---
+- name: instala e inicia nginx
+  hosts: nodes
+  remote_user: bravo
+
+  tasks:
   - name: add cache dir
     file:
         path: /opt/cache
@@ -10,7 +15,7 @@ tasks:
         state: latest
     notify: restart nginx
 
-handlers:
+  handlers:
   - name: restart nginx
     service:
         name: nginx
