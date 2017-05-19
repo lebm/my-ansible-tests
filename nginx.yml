@@ -1,3 +1,4 @@
+---
 - name: instala e inicia nginx
   hosts: nodes
   remote_user: bravo

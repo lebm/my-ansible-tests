@@ -1,3 +1,4 @@
+---
 - name: para e remove nginx
   hosts: nodes
   remote_user: bravo

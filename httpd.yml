@@ -1,3 +1,4 @@
+---
 - name: instala e inicia apache
   hosts: nodes
   vars:

@@ -1,3 +1,4 @@
+---
 - name: teste
   hosts: nodes
   remote_user: bravo
