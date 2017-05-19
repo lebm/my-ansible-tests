@@ -1,8 +1,0 @@
-jbosslab.example.com | SUCCESS => {
-    "changed": true, 
-    "msg": "https://cdn.redhat.com/content/beta/rhel/server/7/x86_64/rt/os/repodata/repomd.xml: [Errno 14] HTTPS Error 403 - Forbidden\nTrying other mirror.\nTo address this issue please refer to the below knowledge base article\n\nhttps://access.redhat.com/solutions/69319\n\nIf above article doesn't help to resolve this issue please open a ticket with Red Hat Support.\n\n", 
-    "rc": 0, 
-    "results": [
-        "Loaded plugins: product-id, search-disabled-repos, subscription-manager\nResolving Dependencies\n--> Running transaction check\n---> Package pinfo.x86_64 0:0.6.10-9.el7 will be installed\n--> Finished Dependency Resolution\n\nDependencies Resolved\n\n================================================================================\n Package      Arch          Version             Repository                 Size\n================================================================================\nInstalling:\n pinfo        x86_64        0.6.10-9.el7        rhel-7-server-rpms        116 k\n\nTransaction Summary\n================================================================================\nInstall  1 Package\n\nTotal download size: 116 k\nInstalled size: 297 k\nDownloading packages:\nRunning transaction check\nRunning transaction test\nTransaction test succeeded\nRunning transaction\n  Installing : pinfo-0.6.10-9.el7.x86_64                                    1/1 \n  Verifying  : pinfo-0.6.10-9.el7.x86_64                                    1/1 \n\nInstalled:\n  pinfo.x86_64 0:0.6.10-9.el7                                                   \n\nComplete!\n"
-    ]
-}
