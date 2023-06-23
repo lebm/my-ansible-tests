@@ -1,10 +1,32 @@
 ---
 # Nível de play
 - name: Pinga hosts
-  hosts: all
+  hosts: alma8
+  #user: user
+  become: yes
   # Nível de tasks
+
   tasks:
   - name: Pinga
     ping:
       data: ok
+
+  - name: Setup
+    setup:
+    register: reg
+
+  - debug: var=reg
+
+  - name: Install vsftpd
+    dnf: name=vsftpd
+
+  - name: Enable vsftpd
+    systemd: name=vsftpd enabled=true state=started
+
+  - name: Create readme file
+    copy:
+      content: "Welcome!"
+      dest: /var/ftp/pub/README
+      force: no
+      mode: 0444
 ...
