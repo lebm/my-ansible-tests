@@ -1,0 +1,10 @@
+---
+# Nível de play
+- name: Pinga hosts
+  hosts: all
+  # Nível de tasks
+  tasks:
+  - name: Pinga
+    ping:
+      data: ok
+...
