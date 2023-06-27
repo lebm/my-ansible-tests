@@ -1,9 +1,22 @@
 [all]
 alma8
+rocky8
+rhel8
 alma9
+
+[managed:children]
+a8
+a9
+r8
 
 [a8]
 alma8
 
 [a9]
 alma9
+
+[r8]
+rocky8
+
+[control]
+rhel8
