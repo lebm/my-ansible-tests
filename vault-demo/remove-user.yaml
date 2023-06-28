@@ -1,0 +1,11 @@
+---
+- name: create a user
+  hosts: all
+  vars_files:
+    - secret.yaml
+  tasks:
+    - name: remove user
+      user:
+        name: "{{ username }}"
+        state: absent
+...
