@@ -4,4 +4,5 @@ users:
   groups: wheel
 - name: linda
   groups: users
+find_user: anna
 ...
