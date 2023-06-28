@@ -1,0 +1,12 @@
+---
+- name: Start some services
+  hosts: lamp
+  tasks:
+  - name: Start services
+    service:
+      name: "{{ item }}"
+      state: started
+    loop:
+      - vsftpd
+      - httpd
+...

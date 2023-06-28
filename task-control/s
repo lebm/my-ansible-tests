@@ -1,0 +1,319 @@
+
+PLAY [demo how register works] *************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [rhel8]
+ok: [alma9]
+ok: [rocky8]
+ok: [alma8]
+
+TASK [show loop register] ******************************************************
+changed: [rocky8] => (item=one)
+changed: [rhel8] => (item=one)
+changed: [alma9] => (item=one)
+changed: [alma8] => (item=one)
+changed: [alma9] => (item=two)
+changed: [rocky8] => (item=two)
+changed: [rhel8] => (item=two)
+changed: [alma8] => (item=two)
+
+TASK [show register results] ***************************************************
+ok: [rhel8] => {
+    "echo": {
+        "changed": true,
+        "msg": "All items completed",
+        "results": [
+            {
+                "ansible_loop_var": "item",
+                "changed": true,
+                "cmd": "echo one",
+                "delta": "0:00:00.004482",
+                "end": "2023-06-28 19:36:42.368051",
+                "failed": false,
+                "invocation": {
+                    "module_args": {
+                        "_raw_params": "echo one",
+                        "_uses_shell": true,
+                        "argv": null,
+                        "chdir": null,
+                        "creates": null,
+                        "executable": null,
+                        "removes": null,
+                        "stdin": null,
+                        "stdin_add_newline": true,
+                        "strip_empty_ends": true
+                    }
+                },
+                "item": "one",
+                "msg": "",
+                "rc": 0,
+                "start": "2023-06-28 19:36:42.363569",
+                "stderr": "",
+                "stderr_lines": [],
+                "stdout": "one",
+                "stdout_lines": [
+                    "one"
+                ]
+            },
+            {
+                "ansible_loop_var": "item",
+                "changed": true,
+                "cmd": "echo two",
+                "delta": "0:00:00.006402",
+                "end": "2023-06-28 19:36:42.723183",
+                "failed": false,
+                "invocation": {
+                    "module_args": {
+                        "_raw_params": "echo two",
+                        "_uses_shell": true,
+                        "argv": null,
+                        "chdir": null,
+                        "creates": null,
+                        "executable": null,
+                        "removes": null,
+                        "stdin": null,
+                        "stdin_add_newline": true,
+                        "strip_empty_ends": true
+                    }
+                },
+                "item": "two",
+                "msg": "",
+                "rc": 0,
+                "start": "2023-06-28 19:36:42.716781",
+                "stderr": "",
+                "stderr_lines": [],
+                "stdout": "two",
+                "stdout_lines": [
+                    "two"
+                ]
+            }
+        ],
+        "skipped": false
+    }
+}
+ok: [alma8] => {
+    "echo": {
+        "changed": true,
+        "msg": "All items completed",
+        "results": [
+            {
+                "ansible_loop_var": "item",
+                "changed": true,
+                "cmd": "echo one",
+                "delta": "0:00:00.005310",
+                "end": "2023-06-28 19:36:42.267708",
+                "failed": false,
+                "invocation": {
+                    "module_args": {
+                        "_raw_params": "echo one",
+                        "_uses_shell": true,
+                        "argv": null,
+                        "chdir": null,
+                        "creates": null,
+                        "executable": null,
+                        "removes": null,
+                        "stdin": null,
+                        "stdin_add_newline": true,
+                        "strip_empty_ends": true
+                    }
+                },
+                "item": "one",
+                "msg": "",
+                "rc": 0,
+                "start": "2023-06-28 19:36:42.262398",
+                "stderr": "",
+                "stderr_lines": [],
+                "stdout": "one",
+                "stdout_lines": [
+                    "one"
+                ]
+            },
+            {
+                "ansible_loop_var": "item",
+                "changed": true,
+                "cmd": "echo two",
+                "delta": "0:00:00.003651",
+                "end": "2023-06-28 19:36:42.540232",
+                "failed": false,
+                "invocation": {
+                    "module_args": {
+                        "_raw_params": "echo two",
+                        "_uses_shell": true,
+                        "argv": null,
+                        "chdir": null,
+                        "creates": null,
+                        "executable": null,
+                        "removes": null,
+                        "stdin": null,
+                        "stdin_add_newline": true,
+                        "strip_empty_ends": true
+                    }
+                },
+                "item": "two",
+                "msg": "",
+                "rc": 0,
+                "start": "2023-06-28 19:36:42.536581",
+                "stderr": "",
+                "stderr_lines": [],
+                "stdout": "two",
+                "stdout_lines": [
+                    "two"
+                ]
+            }
+        ],
+        "skipped": false
+    }
+}
+ok: [rocky8] => {
+    "echo": {
+        "changed": true,
+        "msg": "All items completed",
+        "results": [
+            {
+                "ansible_loop_var": "item",
+                "changed": true,
+                "cmd": "echo one",
+                "delta": "0:00:00.008500",
+                "end": "2023-06-28 19:36:42.380625",
+                "failed": false,
+                "invocation": {
+                    "module_args": {
+                        "_raw_params": "echo one",
+                        "_uses_shell": true,
+                        "argv": null,
+                        "chdir": null,
+                        "creates": null,
+                        "executable": null,
+                        "removes": null,
+                        "stdin": null,
+                        "stdin_add_newline": true,
+                        "strip_empty_ends": true
+                    }
+                },
+                "item": "one",
+                "msg": "",
+                "rc": 0,
+                "start": "2023-06-28 19:36:42.372125",
+                "stderr": "",
+                "stderr_lines": [],
+                "stdout": "one",
+                "stdout_lines": [
+                    "one"
+                ]
+            },
+            {
+                "ansible_loop_var": "item",
+                "changed": true,
+                "cmd": "echo two",
+                "delta": "0:00:00.006404",
+                "end": "2023-06-28 19:36:42.712690",
+                "failed": false,
+                "invocation": {
+                    "module_args": {
+                        "_raw_params": "echo two",
+                        "_uses_shell": true,
+                        "argv": null,
+                        "chdir": null,
+                        "creates": null,
+                        "executable": null,
+                        "removes": null,
+                        "stdin": null,
+                        "stdin_add_newline": true,
+                        "strip_empty_ends": true
+                    }
+                },
+                "item": "two",
+                "msg": "",
+                "rc": 0,
+                "start": "2023-06-28 19:36:42.706286",
+                "stderr": "",
+                "stderr_lines": [],
+                "stdout": "two",
+                "stdout_lines": [
+                    "two"
+                ]
+            }
+        ],
+        "skipped": false
+    }
+}
+ok: [alma9] => {
+    "echo": {
+        "changed": true,
+        "msg": "All items completed",
+        "results": [
+            {
+                "ansible_loop_var": "item",
+                "changed": true,
+                "cmd": "echo one",
+                "delta": "0:00:00.005216",
+                "end": "2023-06-28 19:36:42.355740",
+                "failed": false,
+                "invocation": {
+                    "module_args": {
+                        "_raw_params": "echo one",
+                        "_uses_shell": true,
+                        "argv": null,
+                        "chdir": null,
+                        "creates": null,
+                        "executable": null,
+                        "removes": null,
+                        "stdin": null,
+                        "stdin_add_newline": true,
+                        "strip_empty_ends": true
+                    }
+                },
+                "item": "one",
+                "msg": "",
+                "rc": 0,
+                "start": "2023-06-28 19:36:42.350524",
+                "stderr": "",
+                "stderr_lines": [],
+                "stdout": "one",
+                "stdout_lines": [
+                    "one"
+                ]
+            },
+            {
+                "ansible_loop_var": "item",
+                "changed": true,
+                "cmd": "echo two",
+                "delta": "0:00:00.003502",
+                "end": "2023-06-28 19:36:42.704685",
+                "failed": false,
+                "invocation": {
+                    "module_args": {
+                        "_raw_params": "echo two",
+                        "_uses_shell": true,
+                        "argv": null,
+                        "chdir": null,
+                        "creates": null,
+                        "executable": null,
+                        "removes": null,
+                        "stdin": null,
+                        "stdin_add_newline": true,
+                        "strip_empty_ends": true
+                    }
+                },
+                "item": "two",
+                "msg": "",
+                "rc": 0,
+                "start": "2023-06-28 19:36:42.701183",
+                "stderr": "",
+                "stderr_lines": [],
+                "stdout": "two",
+                "stdout_lines": [
+                    "two"
+                ]
+            }
+        ],
+        "skipped": false
+    }
+}
+
+PLAY RECAP *********************************************************************
+alma8                      : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+alma9                      : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+rhel8                      : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+rocky8                     : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

@@ -1,0 +1,12 @@
+---
+- name: Create some users
+  hosts: all
+  tasks:
+  - name: Create users
+    user:
+      name: "{{ item.name }}"
+      groups: "{{ item.groups }}"
+      state: present
+    # users is defined in group_vars/all.yaml
+    loop: "{{ users }}"
+...
