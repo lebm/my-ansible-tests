@@ -1,0 +1,13 @@
+---
+- name: configure web services
+  # Variables for lamp group are defined in group_vars/lamp.
+  # We don't need to do anything because the name matches
+  hosts: lamp
+  tasks:
+    - name: this is the {{ web_package }} package
+      debug:
+        msg: "Installing {{ web_package }}"
+    - name: this is the {{ web_service }} service
+      debug:
+        msg: "Starting {{ web_service }}"
+...
