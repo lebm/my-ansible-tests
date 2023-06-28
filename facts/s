@@ -1,0 +1,303 @@
+Using /home/bravo/my-ansible-tests/facts/ansible.cfg as config file
+
+PLAY [install custom facts] ****************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [alma9]
+
+TASK [create fact directory] ***************************************************
+ok: [alma9] => changed=false 
+  gid: 0
+  group: root
+  mode: '0755'
+  owner: root
+  path: /etc/ansible/facts.d
+  secontext: unconfined_u:object_r:etc_t:s0
+  size: 83
+  state: directory
+  uid: 0
+
+TASK [install new facts] *******************************************************
+ok: [alma9] => changed=false 
+  checksum: 7f49f3d5c17ccff5486d53c5a0d6e9ddccfa3942
+  dest: /etc/ansible/facts.d/localfacts.fact
+  gid: 0
+  group: root
+  mode: '0644'
+  owner: root
+  path: /etc/ansible/facts.d/localfacts.fact
+  secontext: system_u:object_r:etc_t:s0
+  size: 59
+  state: file
+  uid: 0
+
+PLAY [install and start] *******************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [alma9]
+
+TASK [install] *****************************************************************
+ok: [alma9] => changed=false 
+  msg: Nothing to do
+  rc: 0
+  results: []
+
+TASK [start] *******************************************************************
+ok: [alma9] => changed=false 
+  name: smb
+  state: started
+  status:
+    AccessSELinuxContext: system_u:object_r:samba_unit_file_t:s0
+    ActiveEnterTimestamp: Wed 2023-06-28 18:49:10 -03
+    ActiveEnterTimestampMonotonic: '37211270851'
+    ActiveExitTimestampMonotonic: '0'
+    ActiveState: active
+    After: nmb.service sysinit.target basic.target system.slice winbind.service network.target network-online.target systemd-journald.socket
+    AllowIsolate: 'no'
+    AssertResult: 'yes'
+    AssertTimestamp: Wed 2023-06-28 18:49:10 -03
+    AssertTimestampMonotonic: '37211110058'
+    Before: shutdown.target
+    BlockIOAccounting: 'no'
+    BlockIOWeight: '[not set]'
+    CPUAccounting: 'yes'
+    CPUAffinityFromNUMA: 'no'
+    CPUQuotaPerSecUSec: infinity
+    CPUQuotaPeriodUSec: infinity
+    CPUSchedulingPolicy: '0'
+    CPUSchedulingPriority: '0'
+    CPUSchedulingResetOnFork: 'no'
+    CPUShares: '[not set]'
+    CPUUsageNSec: '58835000'
+    CPUWeight: '[not set]'
+    CacheDirectoryMode: '0755'
+    CanFreeze: 'yes'
+    CanIsolate: 'no'
+    CanReload: 'yes'
+    CanStart: 'yes'
+    CanStop: 'yes'
+    CapabilityBoundingSet: cap_chown cap_dac_override cap_dac_read_search cap_fowner cap_fsetid cap_kill cap_setgid cap_setuid cap_setpcap cap_linux_immutable cap_net_bind_service cap_net_broadcast cap_net_admin cap_net_raw cap_ipc_lock cap_ipc_owner cap_sys_module cap_sys_rawio cap_sys_chroot cap_sys_ptrace cap_sys_pacct cap_sys_admin cap_sys_boot cap_sys_nice cap_sys_resource cap_sys_time cap_sys_tty_config cap_mknod cap_lease cap_audit_write cap_audit_control cap_setfcap cap_mac_override cap_mac_admin cap_syslog cap_wake_alarm cap_block_suspend cap_audit_read cap_perfmon cap_bpf cap_checkpoint_restore
+    CleanResult: success
+    CollectMode: inactive
+    ConditionResult: 'yes'
+    ConditionTimestamp: Wed 2023-06-28 18:49:10 -03
+    ConditionTimestampMonotonic: '37211110057'
+    ConfigurationDirectoryMode: '0755'
+    Conflicts: shutdown.target
+    ControlGroup: /system.slice/smb.service
+    ControlGroupId: '12056'
+    ControlPID: '0'
+    CoredumpFilter: '0x33'
+    DefaultDependencies: 'yes'
+    DefaultMemoryLow: '0'
+    DefaultMemoryMin: '0'
+    Delegate: 'no'
+    Description: Samba SMB Daemon
+    DevicePolicy: auto
+    Documentation: '"man:smbd(8)" "man:samba(7)" "man:smb.conf(5)"'
+    DynamicUser: 'no'
+    Environment: KRB5CCNAME=FILE:/run/samba/krb5cc_samba
+    EnvironmentFiles: /etc/sysconfig/samba (ignore_errors=yes)
+    ExecMainCode: '0'
+    ExecMainExitTimestampMonotonic: '0'
+    ExecMainPID: '7422'
+    ExecMainStartTimestamp: Wed 2023-06-28 18:49:10 -03
+    ExecMainStartTimestampMonotonic: '37211111467'
+    ExecMainStatus: '0'
+    ExecReload: '{ path=/bin/kill ; argv[]=/bin/kill -HUP $MAINPID ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }'
+    ExecReloadEx: '{ path=/bin/kill ; argv[]=/bin/kill -HUP $MAINPID ; flags= ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }'
+    ExecStart: '{ path=/usr/sbin/smbd ; argv[]=/usr/sbin/smbd --foreground --no-process-group $SMBDOPTIONS ; ignore_errors=no ; start_time=[Wed 2023-06-28 18:49:10 -03] ; stop_time=[n/a] ; pid=7422 ; code=(null) ; status=0/0 }'
+    ExecStartEx: '{ path=/usr/sbin/smbd ; argv[]=/usr/sbin/smbd --foreground --no-process-group $SMBDOPTIONS ; flags= ; start_time=[Wed 2023-06-28 18:49:10 -03] ; stop_time=[n/a] ; pid=7422 ; code=(null) ; status=0/0 }'
+    ExitType: main
+    FailureAction: none
+    FileDescriptorStoreMax: '0'
+    FinalKillSignal: '9'
+    FragmentPath: /usr/lib/systemd/system/smb.service
+    FreezerState: running
+    GID: '[not set]'
+    GuessMainPID: 'yes'
+    IOAccounting: 'no'
+    IOReadBytes: '18446744073709551615'
+    IOReadOperations: '18446744073709551615'
+    IOSchedulingClass: '2'
+    IOSchedulingPriority: '4'
+    IOWeight: '[not set]'
+    IOWriteBytes: '18446744073709551615'
+    IOWriteOperations: '18446744073709551615'
+    IPAccounting: 'no'
+    IPEgressBytes: '[no data]'
+    IPEgressPackets: '[no data]'
+    IPIngressBytes: '[no data]'
+    IPIngressPackets: '[no data]'
+    Id: smb.service
+    IgnoreOnIsolate: 'no'
+    IgnoreSIGPIPE: 'yes'
+    InactiveEnterTimestampMonotonic: '0'
+    InactiveExitTimestamp: Wed 2023-06-28 18:49:10 -03
+    InactiveExitTimestampMonotonic: '37211111784'
+    InvocationID: 8368dc4dbea648a58eead4b8d0506fce
+    JobRunningTimeoutUSec: infinity
+    JobTimeoutAction: none
+    JobTimeoutUSec: infinity
+    KeyringMode: private
+    KillMode: control-group
+    KillSignal: '15'
+    LimitAS: infinity
+    LimitASSoft: infinity
+    LimitCORE: infinity
+    LimitCORESoft: infinity
+    LimitCPU: infinity
+    LimitCPUSoft: infinity
+    LimitDATA: infinity
+    LimitDATASoft: infinity
+    LimitFSIZE: infinity
+    LimitFSIZESoft: infinity
+    LimitLOCKS: infinity
+    LimitLOCKSSoft: infinity
+    LimitMEMLOCK: '8388608'
+    LimitMEMLOCKSoft: '8388608'
+    LimitMSGQUEUE: '819200'
+    LimitMSGQUEUESoft: '819200'
+    LimitNICE: '0'
+    LimitNICESoft: '0'
+    LimitNOFILE: '16384'
+    LimitNOFILESoft: '16384'
+    LimitNPROC: '2667'
+    LimitNPROCSoft: '2667'
+    LimitRSS: infinity
+    LimitRSSSoft: infinity
+    LimitRTPRIO: '0'
+    LimitRTPRIOSoft: '0'
+    LimitRTTIME: infinity
+    LimitRTTIMESoft: infinity
+    LimitSIGPENDING: '2667'
+    LimitSIGPENDINGSoft: '2667'
+    LimitSTACK: infinity
+    LimitSTACKSoft: '8388608'
+    LoadState: loaded
+    LockPersonality: 'no'
+    LogLevelMax: '-1'
+    LogRateLimitBurst: '0'
+    LogRateLimitIntervalUSec: '0'
+    LogsDirectoryMode: '0755'
+    MainPID: '7422'
+    ManagedOOMMemoryPressure: auto
+    ManagedOOMMemoryPressureLimit: '0'
+    ManagedOOMPreference: none
+    ManagedOOMSwap: auto
+    MemoryAccounting: 'yes'
+    MemoryAvailable: infinity
+    MemoryCurrent: '17850368'
+    MemoryDenyWriteExecute: 'no'
+    MemoryHigh: infinity
+    MemoryLimit: infinity
+    MemoryLow: '0'
+    MemoryMax: infinity
+    MemoryMin: '0'
+    MemorySwapMax: infinity
+    MountAPIVFS: 'no'
+    NFileDescriptorStore: '0'
+    NRestarts: '0'
+    NUMAPolicy: n/a
+    Names: smb.service
+    NeedDaemonReload: 'no'
+    Nice: '0'
+    NoNewPrivileges: 'no'
+    NonBlocking: 'no'
+    NotifyAccess: main
+    OOMPolicy: stop
+    OOMScoreAdjust: '0'
+    OnFailureJobMode: replace
+    OnSuccessJobMode: fail
+    PIDFile: /run/smbd.pid
+    Perpetual: 'no'
+    PrivateDevices: 'no'
+    PrivateIPC: 'no'
+    PrivateMounts: 'no'
+    PrivateNetwork: 'no'
+    PrivateTmp: 'no'
+    PrivateUsers: 'no'
+    ProcSubset: all
+    ProtectClock: 'no'
+    ProtectControlGroups: 'no'
+    ProtectHome: 'no'
+    ProtectHostname: 'no'
+    ProtectKernelLogs: 'no'
+    ProtectKernelModules: 'no'
+    ProtectKernelTunables: 'no'
+    ProtectProc: default
+    ProtectSystem: 'no'
+    RefuseManualStart: 'no'
+    RefuseManualStop: 'no'
+    ReloadResult: success
+    RemainAfterExit: 'no'
+    RemoveIPC: 'no'
+    Requires: system.slice sysinit.target
+    Restart: 'no'
+    RestartKillSignal: '15'
+    RestartUSec: 100ms
+    RestrictNamespaces: 'no'
+    RestrictRealtime: 'no'
+    RestrictSUIDSGID: 'no'
+    Result: success
+    RootDirectoryStartOnly: 'no'
+    RuntimeDirectoryMode: '0755'
+    RuntimeDirectoryPreserve: 'no'
+    RuntimeMaxUSec: infinity
+    RuntimeRandomizedExtraUSec: '0'
+    SameProcessGroup: 'no'
+    SecureBits: '0'
+    SendSIGHUP: 'no'
+    SendSIGKILL: 'yes'
+    Slice: system.slice
+    StandardError: inherit
+    StandardInput: 'null'
+    StandardOutput: journal
+    StartLimitAction: none
+    StartLimitBurst: '5'
+    StartLimitIntervalUSec: 10s
+    StartupBlockIOWeight: '[not set]'
+    StartupCPUShares: '[not set]'
+    StartupCPUWeight: '[not set]'
+    StartupIOWeight: '[not set]'
+    StateChangeTimestamp: Wed 2023-06-28 18:49:10 -03
+    StateChangeTimestampMonotonic: '37211270851'
+    StateDirectoryMode: '0755'
+    StatusErrno: '0'
+    StatusText: 'smbd: ready to serve connections...'
+    StopWhenUnneeded: 'no'
+    SubState: running
+    SuccessAction: none
+    SyslogFacility: '3'
+    SyslogLevel: '6'
+    SyslogLevelPrefix: 'yes'
+    SyslogPriority: '30'
+    SystemCallErrorNumber: '2147483646'
+    TTYReset: 'no'
+    TTYVHangup: 'no'
+    TTYVTDisallocate: 'no'
+    TasksAccounting: 'yes'
+    TasksCurrent: '3'
+    TasksMax: '4268'
+    TimeoutAbortUSec: 1min 30s
+    TimeoutCleanUSec: infinity
+    TimeoutStartFailureMode: terminate
+    TimeoutStartUSec: 1min 30s
+    TimeoutStopFailureMode: terminate
+    TimeoutStopUSec: 1min 30s
+    TimerSlackNSec: '50000'
+    Transient: 'no'
+    Type: notify
+    UID: '[not set]'
+    UMask: '0022'
+    UnitFilePreset: disabled
+    UnitFileState: disabled
+    UtmpMode: init
+    Wants: network-online.target
+    WatchdogSignal: '6'
+    WatchdogTimestampMonotonic: '0'
+    WatchdogUSec: '0'
+
+PLAY RECAP *********************************************************************
+alma9                      : ok=6    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
