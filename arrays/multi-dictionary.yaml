@@ -1,0 +1,10 @@
+---
+- name: show dictionary also know as hash
+  hosts: alma9
+  vars_files:
+    - vars/users-dictionary.yaml
+  tasks:
+    - name: print dicitionary values
+      debug:
+        msg: "User {{ users.linda.username }} has homedirectory {{ users.linda.homedir }} and shell {{ users.linda.shell }}"
+...
