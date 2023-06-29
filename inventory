@@ -4,10 +4,13 @@ rocky8
 rhel8
 alma9
 
+[control]
+alma8
+
 [managed:children]
-a8
 a9
 r8
+rh
 
 [a8]
 alma8
@@ -18,5 +21,5 @@ alma9
 [r8]
 rocky8
 
-[control]
+[rh]
 rhel8
