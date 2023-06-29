@@ -1,0 +1,20 @@
+---
+- name: Demo of fail module
+  hosts: all
+  tasks:
+    - name: do something impossible
+      lvol:
+        lv: lvnothing
+        vg: vgnothing
+        size: 1G
+      register: command_result
+      ignore_errors: yes
+    - name: show command result errors
+      debug:
+        var: command_result
+    - name: print nice error message after failure
+      fail:
+        msg: VG does not exist
+        #when: "'not found' in command_result.err"
+      when: command_result.failed
+...
