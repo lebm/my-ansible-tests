@@ -1,0 +1,30 @@
+---
+- name: Setup web server
+  hosts: all
+  force_handlers: True
+  tasks:
+    - name: Install httpd
+      dnf:
+        name: httpd
+        state: latest
+    - name: Create web server dir
+      file:
+        path: /var/www/html/
+        state: directory
+    - name: copy index.html
+      copy:
+        src: files/index.html
+        dest: /var/www/html/index.html
+      notify:
+        - restart_web
+    - name: copy nothing - intended to fail
+      copy:
+        src: /tmp/nothing
+        dest: /var/www/html/nothing.hml
+  handlers:
+    - name: restart_web
+      service:
+        name: httpd
+        state: restarted
+...
+
