@@ -1,0 +1,16 @@
+---
+- name: Blocok demo
+  hosts: all
+  tasks:
+    - name: Setting up httpd
+      block:
+        - name: Installing http
+          dnf:
+            name: httpd
+            state: present
+        - name: restart httpd
+          service:
+            name: httpd
+            state: started
+      when: ansible_facts.distribution == "RedHat"
+...
