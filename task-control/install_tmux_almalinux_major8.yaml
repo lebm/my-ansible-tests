@@ -1,0 +1,14 @@
+---
+- name: Install tmux only on Alma 8.x
+  hosts: all
+  tasks:
+    - name: Install tmux on alma8.x
+      yum:
+        name: tmux
+        state: present
+      when:
+        # setup module returns ansible_distribution.
+        # But you must remove the prefix "ansible_" when using with ansible_facts.
+        - ansible_facts.distribution == "AlmaLinux"
+        - ansible_facts.distribution_major_version == "8"
+...
