@@ -1,0 +1,17 @@
+---
+- name: Install httpd in rhel based distro (when demo)
+  hosts: all
+  vars:
+    supported_distros:
+      - RedHat
+      - CentOS
+      - Fedora
+      - Rocky
+      - AlmaLinux
+  tasks:
+    - name: Install httpd only on rhel based
+      yum:
+        name: httpd
+        state: present
+      when: ansible_facts.distribution in supported_distros
+...
