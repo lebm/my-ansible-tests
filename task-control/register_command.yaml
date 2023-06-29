@@ -4,10 +4,15 @@
   tasks:
     - name: show passwd
       shell: cat /etc/passwd
+      # info => filename /etc/ansible/facts.d/info.fact
+      # kv   => ini group inside info.fact
+      # val1 => a key inside kv group
+      # OBS: You must use ansible_facts.ansible_local as prefix
+      when: ansible_facts.ansible_local.info.kv.val1 is defined and ansible_facts.ansible_local.info.kv.val1 == "a" 
       register: passwd_contents
     - debug:
         # find_user defined in groups_var/all.yaml
         msg: echo "pass contains user {{ find_user }}"
       # In conditions, do not user {{ }}
-      when: passwd_contents.stdout.find(find_user) != -1
+      when: passwd_contents.stdout is defined and passwd_contents.stdout.find(find_user) != -1
 ...
