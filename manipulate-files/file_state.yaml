@@ -1,0 +1,11 @@
+---
+- name: file status
+  hosts: all
+  tasks:
+    - name: file status
+      file:
+        path: /tmp/removeme
+      register: info
+    - debug:
+        var: info
+...

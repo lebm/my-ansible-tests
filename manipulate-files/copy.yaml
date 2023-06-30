@@ -1,0 +1,27 @@
+---
+- name: File manipulate demo
+  hosts: all
+  tasks:
+    - name: copy file demo
+      copy:
+        src: /etc/hosts
+        dest: /tmp
+    - name: add some lines to /tmp/hosts
+      blockinfile:
+        path: /tmp/hosts
+        block: |
+          1.1.1.1 hosta
+          2.2.2.2 hostb
+        state: present
+    - name: verify file checksum
+      stat:
+        path: /tmp/hosts
+        checksum_algorithm: sha256
+      register: result
+    - debug:
+        msg: "The cksum of /tmp/hosts is {{ result.stat.checksum }}"
+    - name: fecth a file
+      fetch:
+        src: /tmp/hosts
+        dest: myfiles
+...
