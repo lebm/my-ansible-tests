@@ -10,9 +10,10 @@
       blockinfile:
         path: /tmp/hosts
         block: |
-          1.1.1.1 hosta
-          2.2.2.2 hostb
+          1.1.1.1 hostx
+          2.2.2.2 hosty
         state: present
+      diff: true
     - name: verify file checksum
       stat:
         path: /tmp/hosts
