@@ -1,0 +1,44 @@
+---
+- name: Teste de block
+  hosts: all
+
+  tasks:
+  - name: Bloco só para CentOS
+    block:
+      - name: Mensagem para CentOS
+        ansible.builtin.debug:
+            msg: "Dentro do bloco CentOS"
+
+    when: ansible_facts['distribution'] == 'CentOS'
+    become: true
+
+  - name: Bloco só para Rocky
+    block:
+      - name: Mensagem para Rocky
+        ansible.builtin.debug:
+            msg: "Dentro do bloco Rocky - {{ ansible_facts['nodename'] }}"
+
+    when: ansible_facts['distribution'] == 'Rocky'
+    become: true
+
+  - name: Bloco só para rockya
+    block:
+      - name: Mensagem todos menos rockyb
+        ansible.builtin.debug:
+            msg: "Sou o host {{ ansible_facts['nodename'] }}"
+
+    when: ansible_facts['nodename'] is match('^(r|v|s).*[acdef]$')
+    become: true
+
+  - name: Bloco só para outros
+    block:
+      - name: Mensagem para outros
+        ansible.builtin.debug:
+            msg: "Sou o host {{ ansible_facts['nodename'] }}"
+
+    when: not ansible_facts['nodename'] is match('^(r|v|s).*[acdef]$')
+    become: true
+
+  - name: Mensagem fora do bloco
+    ansible.builtin.debug:
+      msg: "Fora do bloco..."
