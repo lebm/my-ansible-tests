@@ -1,0 +1,16 @@
+variaveis:
+    dict:
+        k1: v1
+        k2: v2
+        k3:
+            a: 1
+            b: 2
+    lista:
+        - "string"
+        - true
+        - false
+        - 1
+        - 10.3
+        - map:
+            ka: a
+            kb: b

@@ -1,0 +1,42 @@
+---
+- name: Cria variável
+  hosts: localhost
+
+  tasks:
+  - name: Cria file.yaml
+    ansible.builtin.copy:
+      dest: ./file.yaml
+      content: |
+        variaveis:
+            dict:
+                k1: v1
+                k2: v2
+                k3:
+                    a: 1
+                    b: 2
+            lista:
+                - "string"
+                - true
+                - false
+                - 1
+                - 10.3
+                - map:
+                    ka: a
+                    kb: b
+
+- name: Le variável de arquivo
+  hosts: localhost
+
+  tasks:
+  - name: Get content of remote file
+    ansible.builtin.slurp:
+      src: ./file.yaml
+    register: remote_file
+
+  - name: Interpret remote file content as yaml
+    ansible.builtin.set_fact:
+      remote_yaml: '{{ remote_file.content | b64decode | from_yaml }}'
+
+  - name: Print yaml for debugging purposes
+    ansible.builtin.debug:
+      var: remote_yaml
