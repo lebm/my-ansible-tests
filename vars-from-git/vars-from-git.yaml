@@ -1,0 +1,56 @@
+---
+# Play de preparação de variável
+# O primeiro play é executado uma vez só nos capsules.
+# Para o playbook o capsule é o localhost
+- name: Cria variáveis a partir de um repositório git
+  hosts: localhost
+
+  tasks:
+  - name: Cria diretório temporário para o repositório
+    # Esse diretório irá armazenar temporariamente um clone do repositório do git com as variáveis.
+    ansible.builtin.tempfile:
+        path: /tmp
+        prefix: ansible.
+        suffix: .vars
+        state: directory
+    register:
+        tempdir
+
+  - debug:
+        var: tempdir
+
+  - name: Recupera arquivo de variáveis do git
+    # Os servidores podem não conseguir acessar o git,
+    # por isso obtemos as variáveis do git a partir dos capsules.
+    ansible.builtin.git:
+        repo: 'git@github.com:lebm/vars-from-git.git'
+        dest: "{{ tempdir.path }}"
+
+  - name: Inclui as variáveis a partir do arquivo
+    ansible.builtin.include_vars:
+        file: "{{ tempdir.path }}/variaveis.yaml"
+        name: variaveis_importadas
+
+  - debug:
+        var: variaveis_importadas
+
+  - name: Remove diretório temporário
+    ansible.builtin.file:
+        path: "{{ tempdir.path }}"
+        state: absent
+
+
+# Play usando a variável
+- name: Usando variáveis definidas no primeiro play
+  hosts: all
+
+  tasks:
+  # Precisa ser executado no managed node
+  - name: Usando hostvars
+    # hostvars permite acessar variáveis de outro host.
+    # Nesse caso queremos acessar "variaveis_importadas" definidas no localhost (capsule)
+    ansible.builtin.set_fact:
+        vimportadas:  "{{ hostvars['localhost']['variaveis_importadas'] }}"
+
+  - debug:
+        var: vimportadas
