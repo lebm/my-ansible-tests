@@ -49,5 +49,8 @@
   - name: Usando hostvars
     # hostvars permite acessar variáveis de outro host.
     # Nesse caso queremos acessar "variaveis_importadas" definidas no localhost (capsule)
-    debug:
-        var: hostvars['localhost']['variaveis_importadas']
+    ansible.builtin.set_fact:
+        vimportadas:  "{{ hostvars['localhost']['variaveis_importadas'] }}"
+
+  - debug:
+        var: vimportadas
