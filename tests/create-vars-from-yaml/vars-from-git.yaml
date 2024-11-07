@@ -1,0 +1,62 @@
+---
+# Play de preparação de variável
+- name: Cria variável
+  hosts: localhost
+
+  tasks:
+  - name: Cria diretório temporário para o repositório
+    ansible.builtin.tempfile:
+        path: /tmp
+        prefix: ansible.
+        suffix: .vars
+        state: directory
+    register:
+        tempdir
+
+  - debug:
+        var: tempdir
+
+  - name: Recupera arquivo de variáveis do git
+    ansible.builtin.git:
+        repo: 'git@github.com:lebm/vars-from-git.git'
+        dest: "{{ tempdir.path }}"
+
+  - name: Inclui as variáveis a partir do arquivo
+    ansible.builtin.include_vars:
+        file: "{{ tempdir.path }}/variaveis.yaml"
+        name: variaveis_importadas
+
+  - debug:
+        var: variaveis_importadas
+
+  - name: Remove diretório temporário
+    ansible.builtin.file:
+        path: "{{ tempdir.path }}"
+        state: absent
+
+
+# Play usando a variável
+- name: Usando variáveis definidas no primeiro play
+  hosts: all
+
+  tasks:
+  # Precisa ser executado no managed node
+  - name: Usando hostvars
+    debug:
+        var: hostvars['localhost']['variaveis_importadas']
+
+#        var: "{{ playbook_facts }}"
+        
+#      src: ./file.yaml
+#    register: remote_file
+#    delegate_to: localhost
+#
+#  # Precisa ser executado no managed node
+#  - name: Interpreta como yaml file e seta variável
+#    ansible.builtin.set_fact:
+#      remote_yaml: '{{ remote_file.content | b64decode | from_yaml }}'
+#    delegate_to: localhost
+#
+#  - name: Print yaml for debugging purposes
+#    ansible.builtin.debug:
+#      var: remote_yaml

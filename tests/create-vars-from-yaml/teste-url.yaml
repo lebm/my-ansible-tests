@@ -1,0 +1,53 @@
+---
+# Play de preparação de variável
+- name: Cria variável
+  hosts: localhost
+
+  tasks:
+  - name: Remove arquivo anterior
+    ansible.builtin.file:
+      path: ./file.yaml
+      state: absent
+
+  - name: Cria file.yaml
+    ansible.builtin.copy:
+      dest: ./file.yaml
+      content: |
+        variaveis:
+            dict:
+                k1: v1
+                k2: v2
+                k3:
+                    a: 1
+                    b: 2
+            lista:
+                - "string"
+                - true
+                - false
+                - 1
+                - 10.3
+                - map:
+                    ka: a
+                    kb: b
+
+# Play usando a variável
+- name: Le variável de arquivo
+  hosts: all
+
+  tasks:
+  # Precisa ser executado no managed node
+  - name: Lê conteúdo do arquivo
+    ansible.builtin.slurp:
+      src: ./file.yaml
+    register: remote_file
+    delegate_to: localhost
+
+  # Precisa ser executado no managed node
+  - name: Interpreta como yaml file e seta variável
+    ansible.builtin.set_fact:
+      remote_yaml: '{{ remote_file.content | b64decode | from_yaml }}'
+    delegate_to: localhost
+
+  - name: Print yaml for debugging purposes
+    ansible.builtin.debug:
+      var: remote_yaml
