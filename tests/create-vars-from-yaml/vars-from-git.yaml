@@ -1,10 +1,13 @@
 ---
 # Play de preparação de variável
-- name: Cria variável
+# O primeiro play é executado uma vez só nos capsules.
+# Para o playbook o capsule é o localhost
+- name: Cria variáveis a partir de um repositório git
   hosts: localhost
 
   tasks:
   - name: Cria diretório temporário para o repositório
+    # Esse diretório irá armazenar temporariamente um clone do repositório do git com as variáveis.
     ansible.builtin.tempfile:
         path: /tmp
         prefix: ansible.
@@ -17,6 +20,8 @@
         var: tempdir
 
   - name: Recupera arquivo de variáveis do git
+    # Os servidores podem não conseguir acessar o git,
+    # por isso obtemos as variáveis do git a partir dos capsules.
     ansible.builtin.git:
         repo: 'git@github.com:lebm/vars-from-git.git'
         dest: "{{ tempdir.path }}"
@@ -42,21 +47,7 @@
   tasks:
   # Precisa ser executado no managed node
   - name: Usando hostvars
+    # hostvars permite acessar variáveis de outro host.
+    # Nesse caso queremos acessar "variaveis_importadas" definidas no localhost (capsule)
     debug:
         var: hostvars['localhost']['variaveis_importadas']
-
-#        var: "{{ playbook_facts }}"
-        
-#      src: ./file.yaml
-#    register: remote_file
-#    delegate_to: localhost
-#
-#  # Precisa ser executado no managed node
-#  - name: Interpreta como yaml file e seta variável
-#    ansible.builtin.set_fact:
-#      remote_yaml: '{{ remote_file.content | b64decode | from_yaml }}'
-#    delegate_to: localhost
-#
-#  - name: Print yaml for debugging purposes
-#    ansible.builtin.debug:
-#      var: remote_yaml
